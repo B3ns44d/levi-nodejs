@@ -1,0 +1,37 @@
+{
+  "name": "todo_list_V2.0",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon --exec babel-node index.js",
+    "test-all": "yarn format && yarn check-format && yarn check-lint",
+    "lint": "eslint --ext js",
+    "format": "prettier --config .prettierrc.js \"**/*.js\" --write",
+    "check-lint": "eslint . --ext js",
+    "check-format": "prettier --check ."
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "fs": "^0.0.1-security",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.8",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.15.5",
+    "@babel/node": "^7.0.0",
+    "@babel/preset-env": "^7.15.6",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^7.29.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-prettier": "^3.4.0",
+    "prettier": "^2.4.1"
+  }
+}

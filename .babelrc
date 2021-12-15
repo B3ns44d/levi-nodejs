@@ -1,0 +1,27 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "current"
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["."],
+        "alias": {
+          "@config": "./src/config",
+          "@routes": "./core/routes/",
+          "@controllers": "./core/controllers",
+          "@utils": "./src/utils",
+          "@shared": "./src/shared"
+        }
+      }
+    ]
+  ]
+}
