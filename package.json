@@ -12,12 +12,11 @@
     "check-format": "prettier --check ."
   },
   "dependencies": {
-    "cors": "^2.8.5",
     "dotenv": "^10.0.0",
-    "fs": "^0.0.1-security",
-    "morgan": "^1.10.0",
     "nodemon": "^2.0.8",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "querystring": "^0.2.1",
+    "route-parser": "^0.0.5"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",

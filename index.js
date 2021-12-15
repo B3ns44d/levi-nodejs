@@ -1,13 +1,18 @@
-const path = require('path')
-const http = require('http')
-import { normalizePort } from '@shared/utils/http'
+import levi from '@levi'
+import routes from './router'
 
-const port = normalizePort(process.env.PORT || 3000)
+import { getProjects, getProject } from '@controllers/project.controller'
 
-const server = http.createServer((req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*')
+const port = 8082
+const app = levi()
+
+app.get('/', (req, res) => {
+  res.send('Hello!')
 })
 
-server.listen(port, () => {
+app.get('/projects', getProjects)
+app.get('/projects/:id', getProject)
+
+app.listen(port, () => {
   console.log(`Server running at port ${port}`)
 })
