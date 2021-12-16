@@ -1,6 +1,8 @@
 import http from 'http'
 import Route from 'route-parser'
-const { parse } = require('querystring')
+import { parse } from 'querystring'
+import { logger } from './utils/logger.js'
+import fs from 'fs'
 
 const levi = (() => {
   let routes = []
@@ -8,7 +10,6 @@ const levi = (() => {
   const addRoute = (method, url, handler) => {
     routes.push({ method, url: new Route(url), handler })
   }
-
   const findRoute = (method, url) => {
     const route = routes.find((route) => {
       return route.method === method && route.url.match(url)
@@ -23,7 +24,6 @@ const levi = (() => {
   const post = (route, handler) => addRoute('post', route, handler)
   const put = (route, handler) => addRoute('put', route, handler)
   const omit = (route, handler) => addRoute('delete', route, handler)
-  const use = (route, handler) => addRoute('use', route, handler)
 
   const router = () => {
     const listen = (port, callback) => {
@@ -33,6 +33,7 @@ const levi = (() => {
             const method = req.method.toLowerCase()
             const url = req.url.toLowerCase()
             const route = findRoute(method, url)
+
             if (route) {
               req.params = route.params
 
@@ -67,6 +68,30 @@ const levi = (() => {
               res.writeHead(404, { 'Content-Type': 'application/json' })
               res.end('Route not found.')
             }
+
+            logger(
+              `${
+                req.connection.remoteAddress
+              } - - [${new Date().toUTCString()}] "${method} ${url} HTTP/1.1" ${
+                res.statusCode
+              } ${res.getHeader('Content-Length')} "${req.headers.referer}" "${
+                req.headers['user-agent']
+              }"`
+            )
+
+            fs.appendFile(
+              'logs/short-report.log',
+              `${
+                req.connection.remoteAddress
+              } - - [${new Date().toUTCString()}] "${method} ${url} HTTP/1.1" ${
+                res.statusCode
+              } ${res.getHeader('Content-Length')} "${req.headers.referer}" "${
+                req.headers['user-agent']
+              }"\n`,
+              function (err) {
+                if (err) throw err
+              }
+            )
           })
           .listen(port, callback)
       } catch (error) {
@@ -80,7 +105,6 @@ const levi = (() => {
       post,
       put,
       omit,
-      use,
     }
   }
 

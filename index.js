@@ -1,5 +1,4 @@
 import levi from '@levi'
-
 import {
   getProjects,
   getProject,
@@ -8,8 +7,8 @@ import {
   deleteProject,
 } from '@controllers/project.controller'
 
-const port = 8082
 const app = levi()
+const port = 8082
 
 app.get('/', (req, res) => {
   res.json({ message: 'Hello' })
