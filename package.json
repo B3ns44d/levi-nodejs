@@ -12,6 +12,7 @@
     "check-format": "prettier --check ."
   },
   "dependencies": {
+    "@prisma/client": "^3.6.0",
     "dotenv": "^10.0.0",
     "nodemon": "^2.0.8",
     "path": "^0.12.7",
@@ -31,6 +32,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-prettier": "^4.0.0",
-    "prettier": "^2.4.1"
+    "prettier": "^2.4.1",
+    "prisma": "^3.6.0"
   }
 }
