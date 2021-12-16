@@ -6,6 +6,7 @@ import {
   updateProject,
   deleteProject,
 } from '@controllers/project.controller'
+import { createTask, removeTask } from '@controllers/task.controller'
 
 const app = levi()
 const port = 8082
@@ -19,6 +20,9 @@ app.get('/projects/:id', getProject)
 app.post('/projects', createProject)
 app.put('/projects/:id', updateProject)
 app.omit('/projects/:id', deleteProject)
+
+app.post('/task', createTask)
+app.omit('/task/:id', removeTask)
 
 app.listen(port, () => {
   console.log(`Server running at port ${port}`)

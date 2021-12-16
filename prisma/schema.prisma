@@ -8,29 +8,29 @@ datasource db {
 }
 
 model project {
-  id          String   @id @default(cuid())
+  id          String    @id @default(cuid())
   name        String
   description String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @default(now())
-  startDate   DateTime
-  endDate     DateTime
-  status      String
-  priority    priority @default(LOW)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @default(now())
+  startDate   DateTime  @default(now())
+  endDate     DateTime?
+  status      String    @default("To do")
+  priority    priority  @default(LOW)
   tasks       task[]
 }
 
 model task {
-  id          String   @id @default(cuid())
+  id          String    @id @default(cuid())
   name        String
   description String
-  status      String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @default(now())
-  startDate   DateTime @default(now())
-  endDate     DateTime
-  priority    priority @default(LOW)
-  project     project  @relation(fields: [projectId], references: [id])
+  status      String    @default("To do")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @default(now())
+  startDate   DateTime  @default(now())
+  endDate     DateTime?
+  priority    priority  @default(LOW)
+  project     project   @relation(fields: [projectId], references: [id])
   projectId   String
 }
 
