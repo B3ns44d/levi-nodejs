@@ -50,7 +50,7 @@ const levi = (() => {
                 res.writeHead(200, { 'Content-Type': 'application/json' })
               }
 
-              if (method === 'post') {
+              if (method === 'post' || method === 'put') {
                 let body = ''
                 req.on('readable', () => {
                   let chunk = req.read()
