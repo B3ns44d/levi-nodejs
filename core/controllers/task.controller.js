@@ -47,4 +47,75 @@ const removeTask = async (req, res) => {
     console.error(error)
   }
 }
-module.exports = { createTask, removeTask }
+
+const updateTask = async (req, res) => {
+  const { id } = req.params
+  try {
+    const task = await db.task
+      .updateMany({
+        where: {
+          id: id,
+        },
+        data: {
+          ...req.body,
+        },
+      })
+      .catch((e) => {
+        throw e
+      })
+      .finally(async () => {
+        await db.$disconnect()
+      })
+    task.count === 1 ? res.send('Task has been updated successfully') : res.send('Task not found')
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+const getSingleTask = async (req, res) => {
+  const { taskId } = req.params
+  try {
+    const task = await db.task
+      .findMany({
+        where: {
+          id: {
+            equals: taskId,
+          },
+        },
+      })
+      .catch((e) => {
+        throw e
+      })
+      .finally(async () => {
+        await db.$disconnect()
+      })
+    task ? res.send(task) : res.send('Task not found')
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+const getTasks = async (req, res) => {
+  const { projectId } = req.params
+  try {
+    const tasks = await db.task
+      .findMany({
+        where: {
+          projectId: {
+            equals: projectId,
+          },
+        },
+      })
+      .catch((e) => {
+        throw e
+      })
+      .finally(async () => {
+        await db.$disconnect()
+      })
+    tasks ? res.send(tasks) : res.send('records empty')
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+module.exports = { createTask, removeTask, getSingleTask, getTasks }
