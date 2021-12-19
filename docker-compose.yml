@@ -2,13 +2,13 @@ version: '3.8'
 
 services:
   db:
-    container_name: "mydb"
+    container_name: "db"
     image: mysql:latest
     networks:
       - default
     restart: always
     ports:
-      - "3306:3306"
+      - "3308:3308"
     environment:
       MYSQL_ROOT_PASSWORD: hello-me
       MYSQL_DATABASE: levi
@@ -24,6 +24,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8082:8082"
+    links:
+      - db
     depends_on:
       - db
     volumes: 
