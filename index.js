@@ -12,7 +12,7 @@ const app = levipress()
 const port = 8082
 
 app.get('/', (req, res) => {
-  res.json({ message: 'Hello' })
+  res.json({ message: 'Levi' })
 })
 
 app.get('/projects', getProjects)

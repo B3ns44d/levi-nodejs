@@ -19,7 +19,7 @@ const createTask = async (req, res) => {
       .finally(async () => {
         await db.$disconnect()
       })
-    return res.send(`Task ${task.id} has been created successfully`)
+    return res.json({ success: `Task ${task.id} has been created successfully` })
   } catch (error) {
     console.error(error)
   }
@@ -42,7 +42,9 @@ const removeTask = async (req, res) => {
       .finally(async () => {
         await db.$disconnect()
       })
-    task.count === 1 ? res.send('Task has been deleted successfully') : res.send('Task not found')
+    task.count === 1
+      ? res.json({ success: 'Task has been deleted successfully' })
+      : res.json({ error: 'Task not found' })
   } catch (error) {
     console.error(error)
   }
@@ -66,7 +68,9 @@ const updateTask = async (req, res) => {
       .finally(async () => {
         await db.$disconnect()
       })
-    task.count === 1 ? res.send('Task has been updated successfully') : res.send('Task not found')
+    task.count === 1
+      ? res.json({ success: 'Task has been updated successfully' })
+      : res.json({ error: 'Task not found' })
   } catch (error) {
     console.error(error)
   }
@@ -89,7 +93,7 @@ const getSingleTask = async (req, res) => {
       .finally(async () => {
         await db.$disconnect()
       })
-    task ? res.send(task) : res.send('Task not found')
+    task ? res.json(task) : res.json({ error: 'Task not found' })
   } catch (error) {
     console.error(error)
   }
@@ -112,7 +116,7 @@ const getTasks = async (req, res) => {
       .finally(async () => {
         await db.$disconnect()
       })
-    tasks ? res.send(tasks) : res.send('records empty')
+    tasks ? res.json(tasks) : res.json({ error: 'No tasks found' })
   } catch (error) {
     console.error(error)
   }
