@@ -1,4 +1,4 @@
-import levi from '@levi'
+import levipress from '@levipress'
 import {
   getProjects,
   getProject,
@@ -8,7 +8,7 @@ import {
 } from '@controllers/project.controller'
 import { createTask, removeTask, getSingleTask, getTasks } from '@controllers/task.controller'
 
-const app = levi()
+const app = levipress()
 const port = 8082
 
 app.get('/', (req, res) => {

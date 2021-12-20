@@ -5,7 +5,7 @@ import { logger } from './utils/logger.js'
 import fs from 'fs'
 import { HTTP_METHOD } from '@shared/constants'
 
-const levi = (() => {
+const levipress = (() => {
   let routes = []
 
   const addRoute = (method, url, handler) => {
@@ -112,4 +112,4 @@ const levi = (() => {
   return router
 })()
 
-module.exports = levi
+module.exports = levipress

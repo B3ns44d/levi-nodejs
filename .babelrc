@@ -20,7 +20,7 @@
           "@controllers": "./core/controllers",
           "@utils": "./src/utils",
           "@shared": "./src/shared",
-          "@levi": "./src/lib/levi"
+          "@levipress": "./src/lib/levipress"
         }
       }
     ]
