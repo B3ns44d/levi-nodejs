@@ -8,7 +8,7 @@ services:
       - default
     restart: always
     ports:
-      - "3308:3308"
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: hello-me
       MYSQL_DATABASE: levi
