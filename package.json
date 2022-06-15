@@ -12,7 +12,7 @@
     "check-format": "prettier --check ."
   },
   "dependencies": {
-    "@prisma/client": "^3.11.0",
+    "@prisma/client": "^3.15.2",
     "dotenv": "^10.0.0",
     "fs": "^0.0.1-security",
     "nodemon": "^2.0.8",
